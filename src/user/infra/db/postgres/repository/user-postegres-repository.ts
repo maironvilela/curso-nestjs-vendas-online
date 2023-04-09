@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUserRepository } from 'src/user/data';
+import { CreateUserRepository } from '@user/data';
+import { UserEntity } from '@user/infra';
 import { Repository } from 'typeorm';
-import { UserEntity } from '../';
 
 @Injectable()
 export class UserPostegresRepository implements CreateUserRepository {

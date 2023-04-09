@@ -1,16 +1,21 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CreateUserService } from './data/services/create-user';
-import { UserEntity } from './infra';
-import { BcryptAdapter } from './infra/bcrypt-adapter';
-import { UserPostegresRepository } from './infra/db/postgres/repository/user-postegres-repository';
-import { EmailValidatorAdapter } from './infra/email-validator-adapter';
-import { UuidV4Adapter } from './infra/uuidv4-adapter';
-import { UserController } from './presentation/controllers/user.controller';
+import { CreateUserService } from '@user/data';
+import {
+  BcryptAdapter,
+  UserEntity,
+  UserPostegresRepository,
+  UuidV4Adapter,
+} from '@user/infra';
+import { UserController } from '@user/presentation';
+import { CreateUserValidation } from '@user/presentation/controllers/user-controller-validation';
+import { EmailValidatorAdapter } from '@validation/validators/email-validator-adapter';
+
 @Module({
   controllers: [UserController],
   providers: [
     CreateUserService,
+    CreateUserValidation,
     {
       provide: 'Hasher',
       useClass: BcryptAdapter,
@@ -19,13 +24,14 @@ import { UserController } from './presentation/controllers/user.controller';
       provide: 'UuidGenerator',
       useClass: UuidV4Adapter,
     },
-    {
-      provide: 'EmailValidator',
-      useClass: EmailValidatorAdapter,
-    },
+
     {
       provide: 'CreateUserRepository',
       useClass: UserPostegresRepository,
+    },
+    {
+      provide: 'EmailValidator',
+      useClass: EmailValidatorAdapter,
     },
   ],
   imports: [TypeOrmModule.forFeature([UserEntity])],

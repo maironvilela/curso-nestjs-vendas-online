@@ -1,10 +1,10 @@
+import { HttpResponse } from '@user/presentation';
 import { ServerError } from '../errors/server-error';
 import { UnauthorizedError } from '../errors/unauthorized-error';
-import { HttpResponse } from '../protocols/http';
 
 export const badRequest = (error: Error): HttpResponse => ({
   statusCode: 400,
-  body: error,
+  body: error.message,
 });
 
 export const forbidden = (error: Error): HttpResponse => ({

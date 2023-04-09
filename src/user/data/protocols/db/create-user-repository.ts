@@ -1,4 +1,4 @@
-import { CreateUser } from '../../../domain';
+import { CreateUser } from '@user/domain';
 
 export interface CreateUserRepository {
   create: (

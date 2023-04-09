@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import { User } from '../';
+import { User } from '@user/domain';
 
 export interface CreateUser {
   execute: (data: CreateUser.Params) => Promise<CreateUser.Result>;

@@ -1,14 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreateUser } from '../../../domain/';
-import { EmailValidator, Hasher, UuidGenerator } from '../../protocols/';
-import { CreateUserRepository } from '../../protocols/db/create-user-repository';
+import { CreateUserRepository, Hasher, UuidGenerator } from '@user/data';
+import { CreateUser } from '@user/domain/';
 
 @Injectable()
 export class CreateUserService implements CreateUser {
   constructor(
     @Inject('Hasher') private hash: Hasher,
     @Inject('UuidGenerator') private uuidGenerator: UuidGenerator,
-    @Inject('EmailValidator') private emailValidator: EmailValidator,
     @Inject('CreateUserRepository')
     private createUserRepository: CreateUserRepository,
   ) {}
