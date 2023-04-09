@@ -13,8 +13,11 @@ export class UserPostegresRepository implements CreateUserRepository {
   async create(
     data: CreateUserRepository.Params,
   ): Promise<CreateUserRepository.Result> {
-    const userEntity = { ...data };
-    const user = this.repository.create(userEntity);
-    return this.repository.save(user);
+    try {
+      const user = this.repository.create(data);
+      return this.repository.save(user);
+    } catch (error) {
+      return error;
+    }
   }
 }

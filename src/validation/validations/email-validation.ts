@@ -1,4 +1,4 @@
-import { InvalidParamError } from '@user/presentation';
+import { InvalidParamError } from '@util/errors';
 import { EmailValidator, Validation } from '@validation/protocols';
 
 export class EmailValidation implements Validation {

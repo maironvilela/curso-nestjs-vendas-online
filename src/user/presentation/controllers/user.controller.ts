@@ -1,7 +1,7 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { CreateUserService } from '@user/data';
-import { badRequest, ok, serverError } from '@user/presentation';
-import { EmailValidation } from '@validation/validators';
+import { badRequest, ok, serverError } from '@util/helpers/http-helper';
+import { EmailValidation } from '@validation/validations';
 import { CreateUserValidation } from './user-controller-validation';
 
 export namespace UserController {

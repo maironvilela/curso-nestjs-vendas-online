@@ -9,13 +9,17 @@ import {
 } from '@user/infra';
 import { UserController } from '@user/presentation';
 import { CreateUserValidation } from '@user/presentation/controllers/user-controller-validation';
-import { EmailValidatorAdapter } from '@validation/validators/email-validator-adapter';
+import { EmailValidatorAdapter } from '@validation/validators';
+import { CellPhoneValidatorAdapter } from '@validation/validators/cell-phone-validator-adapter';
+import { LandLineValidatorAdapter } from '@validation/validators/landline-validator-adapter';
 
 @Module({
   controllers: [UserController],
   providers: [
     CreateUserService,
     CreateUserValidation,
+    CellPhoneValidatorAdapter,
+    LandLineValidatorAdapter,
     {
       provide: 'Hasher',
       useClass: BcryptAdapter,
