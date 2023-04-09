@@ -1,5 +1,19 @@
-import { User } from '../../../domain';
+import { CreateUser } from '../../../domain';
 
 export interface CreateUserRepository {
-  create: (data: User) => Promise<User>;
+  create: (
+    data: CreateUserRepository.Params,
+  ) => Promise<CreateUserRepository.Result>;
+}
+
+export namespace CreateUserRepository {
+  export type Params = {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+    cpf: string;
+    password: string;
+  };
+  export type Result = CreateUser.Result;
 }

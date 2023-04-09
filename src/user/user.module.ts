@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CreateUserService } from './data/services/create-user';
-import { User } from './infra';
+import { UserEntity } from './infra';
 import { BcryptAdapter } from './infra/bcrypt-adapter';
 import { UserPostegresRepository } from './infra/db/postgres/repository/user-postegres-repository';
 import { EmailValidatorAdapter } from './infra/email-validator-adapter';
@@ -28,7 +28,7 @@ import { UserController } from './presentation/controllers/user.controller';
       useClass: UserPostegresRepository,
     },
   ],
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [TypeOrmModule.forFeature([UserEntity])],
   exports: [TypeOrmModule],
 })
 export class UserModule {}

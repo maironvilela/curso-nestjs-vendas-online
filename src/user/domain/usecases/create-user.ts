@@ -1,13 +1,18 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 import { User } from '../';
 
-export type CreateUserParams = {
-  name: string;
-  email: string;
-  phone: string;
-  cpf: string;
-  password: string;
-};
-
 export interface CreateUser {
-  execute(data: CreateUserParams): Promise<User>;
+  execute: (data: CreateUser.Params) => Promise<CreateUser.Result>;
+}
+
+export namespace CreateUser {
+  export type Params = {
+    name: string;
+    email: string;
+    phone: string;
+    cpf: string;
+    password: string;
+  };
+
+  export type Result = User;
 }

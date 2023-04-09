@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CreateUser, User } from '../../../domain/';
-import { CreateUserDTO } from '../../dto/create-user-dto';
+import { CreateUser } from '../../../domain/';
 import { EmailValidator, Hasher, UuidGenerator } from '../../protocols/';
 import { CreateUserRepository } from '../../protocols/db/create-user-repository';
 
@@ -14,7 +13,7 @@ export class CreateUserService implements CreateUser {
     private createUserRepository: CreateUserRepository,
   ) {}
 
-  async execute(data: CreateUserDTO): Promise<User> {
+  async execute(data: CreateUser.Params): Promise<CreateUser.Result> {
     const passwordHashed = await this.hash.hash(data.password);
     const id = await this.uuidGenerator.generate();
     const user = await this.createUserRepository.create({
