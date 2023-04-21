@@ -1,5 +1,5 @@
-import { ServerError, UnauthorizedError } from '@util/errors';
-import { HttpResponse } from '@util/protocols';
+import { ServerError, UnauthorizedError } from '@shared/errors';
+import { HttpResponse } from '@shared/protocols';
 
 export const badRequest = (error: Error): HttpResponse => ({
   statusCode: 400,
@@ -14,6 +14,11 @@ export const forbidden = (error: Error): HttpResponse => ({
 export const unauthorized = (): HttpResponse => ({
   statusCode: 401,
   body: new UnauthorizedError(),
+});
+
+export const create = (data): HttpResponse => ({
+  statusCode: 201,
+  body: data,
 });
 
 export const serverError = (error: Error): HttpResponse => ({

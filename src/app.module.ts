@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserEntity } from './user/infra';
 import { UserModule } from './user/user.module';
 
 @Module({
@@ -16,8 +15,9 @@ import { UserModule } from './user/user.module';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [UserEntity],
-      synchronize: true,
+      entities: [`${__dirname}/**/infra/db/postgres/entities/*{.ts,*.js}`],
+      migrations: [`${__dirname}/typeorm/migration/{.ts,*.js}`],
+      migrationsRun: true,
     }),
     UserModule,
   ],

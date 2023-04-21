@@ -11,8 +11,7 @@
     "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
-      "@util/*": ["./utils/*"],    
-      "@validation/*": ["./validation/*"],    
+      "@shared/*": ["./shared/*"],    
       "@user/*": ["./user/*"],          
     },
     "incremental": true,

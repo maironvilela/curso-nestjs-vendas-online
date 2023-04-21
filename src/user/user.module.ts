@@ -1,17 +1,20 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import {
+  CellPhoneValidatorAdapter,
+  EmailValidatorAdapter,
+  LandLineValidatorAdapter,
+} from '@shared/validation/validators';
+
 import { CreateUserService } from '@user/data';
 import {
   BcryptAdapter,
-  UserEntity,
+  User,
   UserPostegresRepository,
   UuidV4Adapter,
 } from '@user/infra';
 import { UserController } from '@user/presentation';
 import { CreateUserValidation } from '@user/presentation/controllers/user-controller-validation';
-import { EmailValidatorAdapter } from '@validation/validators';
-import { CellPhoneValidatorAdapter } from '@validation/validators/cell-phone-validator-adapter';
-import { LandLineValidatorAdapter } from '@validation/validators/landline-validator-adapter';
 
 @Module({
   controllers: [UserController],
@@ -38,7 +41,7 @@ import { LandLineValidatorAdapter } from '@validation/validators/landline-valida
       useClass: EmailValidatorAdapter,
     },
   ],
-  imports: [TypeOrmModule.forFeature([UserEntity])],
+  imports: [TypeOrmModule.forFeature([User])],
   exports: [TypeOrmModule],
 })
 export class UserModule {}

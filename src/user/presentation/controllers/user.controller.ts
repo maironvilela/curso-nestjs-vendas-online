@@ -1,7 +1,6 @@
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { badRequest, create, serverError } from '@shared/helpers/http-helper';
 import { CreateUserService } from '@user/data';
-import { badRequest, ok, serverError } from '@util/helpers/http-helper';
-import { EmailValidation } from '@validation/validations';
 import { CreateUserValidation } from './user-controller-validation';
 
 export namespace UserController {
@@ -24,7 +23,6 @@ export class UserController {
   constructor(
     private createUserService: CreateUserService,
     private createUserValidation: CreateUserValidation,
-    @Inject('EmailValidator') private emailValidation: EmailValidation,
   ) {}
 
   @Post()
@@ -37,7 +35,7 @@ export class UserController {
       if (error) {
         return badRequest(error);
       }
-      return ok(await this.createUserService.execute(data));
+      return create(await this.createUserService.execute(data));
     } catch (error) {
       return serverError(error);
     }
