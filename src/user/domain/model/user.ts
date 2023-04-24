@@ -5,4 +5,6 @@ export type User = {
   phone: string;
   cpf: string;
   password: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
