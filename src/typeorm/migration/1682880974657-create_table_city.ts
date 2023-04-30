@@ -1,10 +1,15 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
-export class CreateTableState1682114430482 implements MigrationInterface {
+export class CreateTableCity1682880974657 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     queryRunner.createTable(
       new Table({
-        name: 'state',
+        name: 'city',
         columns: [
           {
             name: 'id',
@@ -16,8 +21,8 @@ export class CreateTableState1682114430482 implements MigrationInterface {
             type: 'varchar(100)',
           },
           {
-            name: 'uf',
-            type: 'varchar(2)',
+            name: 'state_id',
+            type: 'int',
           },
 
           {
@@ -33,9 +38,18 @@ export class CreateTableState1682114430482 implements MigrationInterface {
         ],
       }),
     );
+    await queryRunner.createForeignKey(
+      'city',
+      new TableForeignKey({
+        columnNames: ['state_id'],
+        referencedTableName: 'state',
+        referencedColumnNames: ['id'],
+        onDelete: 'CASCADE',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('state');
+    await queryRunner.dropTable('city');
   }
 }

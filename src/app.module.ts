@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { StateModule } from './state/state.module';
 import { UserModule } from './user/user.module';
+import { CityModule } from './city/city.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { UserModule } from './user/user.module';
     }),
     UserModule,
     StateModule,
+    CityModule,
   ],
   providers: [],
 })

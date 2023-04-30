@@ -14,6 +14,7 @@
       "@shared/*": ["./shared/*"],    
       "@user/*": ["./user/*"],          
       "@state/*": ["./state/*"],          
+      "@city/*": ["./city/*"],          
     },
     "incremental": true,
     "skipLibCheck": true,
