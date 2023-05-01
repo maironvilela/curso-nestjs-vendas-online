@@ -9,9 +9,10 @@ export class FindCitiesByStateIdService implements FindCitiesByStateIdUseCase {
     private findCitiesByStateIdRepository: FindCitiesByStateIdRepository,
   ) {}
 
-  async execute({
-    stateId,
-  }: FindCitiesByStateIdUseCase.Params): Promise<FindCitiesByStateIdUseCase.Result> {
+  async execute(
+    data: FindCitiesByStateIdUseCase.Params,
+  ): Promise<FindCitiesByStateIdUseCase.Result> {
+    const { stateId } = data;
     return await this.findCitiesByStateIdRepository.findCitiesByStateId({
       stateId,
     });

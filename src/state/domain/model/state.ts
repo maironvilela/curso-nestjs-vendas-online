@@ -1,5 +1,5 @@
 export type State = {
-  id: number;
+  id?: number;
   name: string;
   uf: string;
   createdAt: Date;

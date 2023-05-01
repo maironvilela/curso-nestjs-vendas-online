@@ -13,8 +13,9 @@ import {
   UserPostegresRepository,
   UuidV4Adapter,
 } from '@user/infra';
-import { UserController } from '@user/presentation';
 import { CreateUserValidation } from '@user/presentation/controllers/user-controller-validation';
+import { UserController } from './main/router/user.controller';
+import { CreateUserController } from './presentation/controllers/create-user-controller';
 
 @Module({
   controllers: [UserController],
@@ -23,6 +24,7 @@ import { CreateUserValidation } from '@user/presentation/controllers/user-contro
     CreateUserValidation,
     CellPhoneValidatorAdapter,
     LandLineValidatorAdapter,
+    CreateUserController,
     {
       provide: 'Hasher',
       useClass: BcryptAdapter,

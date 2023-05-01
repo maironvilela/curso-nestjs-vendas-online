@@ -5,15 +5,16 @@ import { Repository } from 'typeorm';
 import { City } from '../entities/city';
 
 @Injectable()
-export class CityRepository implements FindCitiesByStateIdRepository {
+export class CityTypeOrmRepository implements FindCitiesByStateIdRepository {
   constructor(
     @InjectRepository(City)
     private repository: Repository<City>,
   ) {}
 
-  async findCitiesByStateId({
-    stateId,
-  }: FindCitiesByStateIdRepository.Params): Promise<FindCitiesByStateIdRepository.Result> {
+  async findCitiesByStateId(
+    data: FindCitiesByStateIdRepository.Params,
+  ): Promise<FindCitiesByStateIdRepository.Result> {
+    const { stateId } = data;
     return await this.repository.find({
       where: {
         stateId,
