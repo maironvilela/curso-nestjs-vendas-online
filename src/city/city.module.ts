@@ -1,3 +1,4 @@
+import { CacheModule } from '@cache/cache.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FindCitiesByStateIdService } from './data/services/find-cities-by-state-id';
@@ -7,10 +8,11 @@ import { CityController } from './main/router/city.controller';
 import { FindCitiesByStateIdController } from './presentation/controller/find-cities-by-state-id-controller';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([City])],
+  imports: [CacheModule, TypeOrmModule.forFeature([City])],
   controllers: [CityController],
   providers: [
     FindCitiesByStateIdController,
+
     {
       provide: 'FindCitiesByStateIdUseCase',
       useClass: FindCitiesByStateIdService,

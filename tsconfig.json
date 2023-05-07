@@ -16,6 +16,7 @@
       "@state/*": ["./state/*"],          
       "@city/*": ["./city/*"],          
       "@address/*": ["./address/*"],          
+      "@cache/*": ["./cache/*"],          
     },
     "incremental": true,
     "skipLibCheck": true,
