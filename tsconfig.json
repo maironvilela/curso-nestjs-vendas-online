@@ -15,6 +15,7 @@
       "@user/*": ["./user/*"],          
       "@state/*": ["./state/*"],          
       "@city/*": ["./city/*"],          
+      "@address/*": ["./address/*"],          
     },
     "incremental": true,
     "skipLibCheck": true,

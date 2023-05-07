@@ -1,3 +1,4 @@
+import { Address } from '@address/infra/db/typeorm/entities/address';
 import { State } from '@state/infra/db/typeorm/entities/state';
 import {
   Column,
@@ -5,6 +6,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -23,6 +25,9 @@ export class City {
   @ManyToOne(() => State, (state) => state.cities)
   @JoinColumn({ name: 'state_id', referencedColumnName: 'id' })
   state?: State;
+
+  @OneToMany(() => Address, (address) => address.city)
+  address: Address[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

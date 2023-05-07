@@ -1,7 +1,9 @@
+import { Address } from '@address/infra/db/typeorm/entities/address';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToOne,
   PrimaryColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -25,6 +27,9 @@ export class User {
 
   @Column({ length: 100 })
   password: string;
+
+  @OneToOne(() => Address, (address) => address.user)
+  address: Address;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
