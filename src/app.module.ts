@@ -1,11 +1,12 @@
+import { AddressModule } from '@address/address.module';
+import { CacheModule } from '@cache/cache.module';
+import { CityModule } from '@city/city.module';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AddressModule } from './address/address.module';
-import { CacheModule } from './cache/cache.module';
-import { CityModule } from './city/city.module';
-import { StateModule } from './state/state.module';
-import { UserModule } from './user/user.module';
+import { SharedModule } from '@shared/shared.module';
+import { StateModule } from '@state/state.module';
+import { UserModule } from '@user/user.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { UserModule } from './user/user.module';
     CityModule,
     AddressModule,
     CacheModule,
+    SharedModule,
   ],
   providers: [],
 })

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PhoneValidator } from '@shared/validation/protocols';
+import { PhoneValidator } from '../protocols';
 
 @Injectable()
 export class CellPhoneValidatorAdapter implements PhoneValidator {

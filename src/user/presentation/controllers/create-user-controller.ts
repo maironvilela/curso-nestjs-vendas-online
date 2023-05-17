@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { BadRequestError } from '@shared/errors/bad-request-error';
-import { create } from '@shared/helpers/http-helper';
-import { Controller, HttpResponse } from '@shared/protocols';
+import { BadRequestError } from '@shared/presentation/errors/bad-request-error';
+import { create } from '@shared/presentation/helpers/http-helper';
+import { Controller } from '@shared/presentation/protocols/controller';
+import { HttpResponse } from '@shared/presentation/protocols/http';
 import { CreateUserService } from '@user/data';
 import { CreateUserValidation } from './user-controller-validation';
 

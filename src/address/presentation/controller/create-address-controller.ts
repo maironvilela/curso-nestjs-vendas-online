@@ -1,8 +1,9 @@
 import { AddressDTO } from '@address/domain/dto/address-dto';
 import { CreateAddressUseCase } from '@address/domain/usecases/create-address';
 import { Inject, Injectable } from '@nestjs/common';
-import { create } from '@shared/helpers/http-helper';
-import { Controller, HttpResponse } from '@shared/protocols';
+import { create } from '@shared/presentation/helpers/http-helper';
+import { Controller } from '@shared/presentation/protocols/controller';
+import { HttpResponse } from '@shared/presentation/protocols/http';
 
 export namespace CreateAddressController {
   export type Request = AddressDTO;

@@ -4,9 +4,10 @@ import { AddressController } from '@address/main/router/address.controller';
 import { CreateAddressController } from '@address/presentation/controller/create-address-controller';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UuidV4GeneratorAdapterFactory } from '@shared/main/factories/adapters/uuidv4-generator-adapter-factory';
+import { SharedModule } from '@shared/shared.module';
 import { AddressTypeOrmRepository } from './infra/db/typeorm/repositories/address-repository';
 import { UuidAdapter } from './infra/generator/uuid-adapter';
-import { UuidV4AdapterGenerator } from './main/factories/adapters/generator/uuidv4-adapter-generator';
 
 @Module({
   controllers: [AddressController],
@@ -27,9 +28,9 @@ import { UuidV4AdapterGenerator } from './main/factories/adapters/generator/uuid
     },
     {
       provide: 'UuidGenerator',
-      useClass: UuidV4AdapterGenerator,
+      useClass: UuidV4GeneratorAdapterFactory,
     },
   ],
-  imports: [TypeOrmModule.forFeature([Address])],
+  imports: [TypeOrmModule.forFeature([Address]), SharedModule],
 })
 export class AddressModule {}

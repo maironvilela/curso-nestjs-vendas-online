@@ -1,12 +1,15 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { EmailValidator, Validation } from '@shared/validation/protocols';
+import {
+  EmailValidator,
+  Validation,
+} from '@shared/presentation/validation/protocols';
 import {
   EmailValidation,
   PhoneValidation,
   RequiredFieldValidation,
   ValidationComposite,
-} from '@shared/validation/validations';
-import { CellPhoneValidatorAdapter } from '@shared/validation/validators';
+} from '@shared/presentation/validation/validations';
+import { CellPhoneValidatorAdapter } from '@shared/presentation/validation/validators';
 
 @Injectable()
 export class CreateUserValidation {
