@@ -26,7 +26,6 @@ export class CreateUserValidation {
     validations.push(
       new PhoneValidation('phone', this.cellPhoneValidatorAdapter),
     );
-
     return new ValidationComposite(validations);
   };
 }

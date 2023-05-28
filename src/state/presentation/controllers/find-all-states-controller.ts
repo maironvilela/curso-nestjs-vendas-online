@@ -1,7 +1,7 @@
 import { Inject } from '@nestjs/common';
+import { HttpResponse } from '@shared/presentation';
 import { ok } from '@shared/presentation/helpers/http-helper';
 import { Controller } from '@shared/presentation/protocols/controller';
-import { HttpResponse } from '@shared/presentation/protocols/http';
 import { FindAllStateUseCase } from '@state/domain';
 
 export class FindAllStatesController implements Controller {

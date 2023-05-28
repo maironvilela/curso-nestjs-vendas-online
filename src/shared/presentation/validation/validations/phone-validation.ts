@@ -1,5 +1,5 @@
+import { PhoneValidator, Validation } from '@shared/presentation';
 import { InvalidParamError } from '@shared/presentation/errors';
-import { PhoneValidator, Validation } from '@shared/validation/protocols';
 
 export class PhoneValidation implements Validation {
   constructor(

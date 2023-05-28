@@ -1,4 +1,4 @@
-import { HttpResponse } from '@shared/data/protocols';
+import { HttpResponse } from '@shared/presentation';
 import { ServerError, UnauthorizedError } from '@shared/presentation/errors';
 
 export const badRequest = (error: Error): HttpResponse => ({
