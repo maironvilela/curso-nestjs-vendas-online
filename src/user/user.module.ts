@@ -8,7 +8,7 @@ import {
   LandLineValidatorAdapter,
 } from '@shared/presentation/validation/validators';
 import { SharedModule } from '@shared/shared.module';
-import { CreateUserService } from '@user/data';
+import { CreateUserService, FindUserByIdService } from '@user/data';
 import { HasherAdapter, User, UserPostegresRepository } from '@user/infra';
 import { CreateUserValidation } from '@user/presentation/controllers/user-controller-validation';
 import { UuidGeneratorAdapter } from './infra/generator/uuid-generator-adapter';
@@ -26,6 +26,7 @@ import { CreateUserController } from './presentation/controllers/create-user-con
     CreateUserController,
     HasherAdapter,
     UuidGeneratorAdapter,
+    FindUserByIdService,
 
     {
       provide: 'UuidGenerator',
@@ -34,6 +35,10 @@ import { CreateUserController } from './presentation/controllers/create-user-con
 
     {
       provide: 'CreateUserRepository',
+      useClass: UserPostegresRepository,
+    },
+    {
+      provide: 'FindUserByIdRepository',
       useClass: UserPostegresRepository,
     },
     {
@@ -47,6 +52,6 @@ import { CreateUserController } from './presentation/controllers/create-user-con
     },
   ],
   imports: [TypeOrmModule.forFeature([User]), SharedModule],
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, FindUserByIdService],
 })
 export class UserModule {}
