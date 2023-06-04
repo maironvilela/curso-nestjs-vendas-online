@@ -7,7 +7,7 @@ import { Response } from 'express';
 export class AddressController {
   constructor(private createAddressController: CreateAddressController) {}
   @Post('/:userId')
-  async createAddress( 
+  async createAddress(
     @Body() data: CreateAddressController.Request,
     @Param('userId') userId: string,
     @Res() res: Response,
@@ -20,7 +20,7 @@ export class AddressController {
       });
       return res.status(HttpStatus.CREATED).json(response);
     } catch (error) {
-       return res.status(HttpStatus.BAD_REQUEST).json(badRequest(error));
-     }
+      return res.status(HttpStatus.BAD_REQUEST).json(badRequest(error));
+    }
   }
 }

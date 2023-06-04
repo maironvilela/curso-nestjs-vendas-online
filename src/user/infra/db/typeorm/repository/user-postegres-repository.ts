@@ -13,38 +13,33 @@ export class UserPostegresRepository
 {
   constructor(
     @InjectRepository(User)
-    private repository: Repository<User>, 
+    private repository: Repository<User>,
   ) {}
   async findUserById({
     id,
   }: FindUserByIdUseCase.Params): Promise<FindUserByIdUseCase.Result> {
+    try {
+      const user = await this.repository.findOne({
+        select: {
+          id: true,
+        },
+        where: {
+          id: id,
+        },
+      });
 
-    try{
-      const user =  await this.repository.findOne({
-        select:{
-          id: true
-        },
-        where:{
-          id: id
-        },
-      })
- 
       return user;
-
-    }catch(error){
-
-      if(error instanceof QueryFailedError){
-      throw new BadRequestError("User Not Found")
+    } catch (error) {
+      if (error instanceof QueryFailedError) {
+        throw new BadRequestError(`User ${id} Not Found`);
       }
-      throw new ServerError("Server Error")      
-     }  
- 
-   
+      throw new ServerError('Server Error');
+    }
   }
 
   async create(
     data: CreateUserRepository.Params,
   ): Promise<CreateUserRepository.Result> {
-       return await this.repository.save(data);     
+    return await this.repository.save(data);
   }
 }

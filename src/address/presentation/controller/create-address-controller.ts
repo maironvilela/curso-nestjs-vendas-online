@@ -14,12 +14,10 @@ export class CreateAddressController
     private createAddressUseCase: CreateAddressUseCase,
   ) {}
   async handle(data?: AddressDTO): Promise<HttpResponse> {
-    
-      const address = await this.createAddressUseCase.execute(data);
-      return create(address);
-  
+    const address = await this.createAddressUseCase.execute(data);
+    return create(address);
   }
-} 
+}
 
 export namespace CreateAddressController {
   export type Request = AddressDTO;
