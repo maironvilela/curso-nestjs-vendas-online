@@ -7,6 +7,7 @@ import { UuidGeneratorAdapter } from '@user/infra/generator/uuid-generator-adapt
 @Injectable()
 export class CreateUserService implements CreateUser {
   constructor(
+    @Inject('Hasher')
     private hasher: HasherAdapter,
     private uuidGenerator: UuidGeneratorAdapter,
     @Inject('CreateUserRepository')

@@ -47,8 +47,12 @@ import { CreateUserController } from './presentation/controllers/create-user-con
     },
 
     {
-      provide: 'HasherAdapter',
+      provide: 'HasherAdapterFactory',
       useClass: BcryptHasherAdapterFactory,
+    },
+    {
+      provide: 'Hasher',
+      useClass: HasherAdapter,
     },
   ],
   imports: [TypeOrmModule.forFeature([User]), SharedModule],

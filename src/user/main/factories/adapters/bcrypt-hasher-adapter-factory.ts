@@ -1,4 +1,4 @@
-import { Hasher } from '@user/data';
+import { Hasher } from '@shared/data';
 import { genSalt, hash } from 'bcrypt';
 
 export class BcryptHasherAdapterFactory implements Hasher {
