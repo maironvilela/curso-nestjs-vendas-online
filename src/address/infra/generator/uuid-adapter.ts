@@ -1,5 +1,5 @@
 import { Inject } from '@nestjs/common';
-import { UuidGenerator } from '@user/data';
+import { UuidGenerator } from '@shared/data';
 
 export class UuidAdapter implements UuidGenerator {
   constructor(

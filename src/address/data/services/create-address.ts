@@ -1,7 +1,7 @@
 import { CreateAddressRepository } from '@address/data/protocols/db/create-address-repository';
-import { UuidGenerator } from '@address/data/protocols/generator/uuid';
 import { CreateAddressUseCase } from '@address/domain/usecases/create-address';
 import { Inject, Injectable } from '@nestjs/common';
+import { UuidGenerator } from '@shared/data';
 import { BadRequestError } from '@shared/presentation';
 import { FindUserByIdService } from '@user/data';
 

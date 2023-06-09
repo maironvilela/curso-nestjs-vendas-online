@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
-import { UuidV4GeneratorAdapterFactory } from './main/factories/adapters/uuidv4-generator-adapter-factory';
+import { Global, Module } from '@nestjs/common';
+import { UuidV4GeneratorAdapter } from './infra/generator/uuidv4-generator-adapter';
 
+@Global()
 @Module({
-  exports: [UuidV4GeneratorAdapterFactory],
-  providers: [UuidV4GeneratorAdapterFactory],
+  exports: [UuidV4GeneratorAdapter],
+  providers: [UuidV4GeneratorAdapter],
 })
 export class SharedModule {}
