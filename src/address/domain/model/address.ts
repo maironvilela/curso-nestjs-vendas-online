@@ -1,6 +1,6 @@
 export type Address = {
   id: string;
-  cep: string;
+  cep: string; // zipCode
   logradouro: string;
   number: number;
   complement: string;

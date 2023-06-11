@@ -1,31 +1,25 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { Validation } from '@shared/presentation/validation/protocols';
 import {
-  EmailValidator,
-  Validation,
-} from '@shared/presentation/validation/protocols';
-import {
-  EmailValidation,
   PhoneValidation,
   RequiredFieldValidation,
   ValidationComposite,
 } from '@shared/presentation/validation/validations';
-import { CellPhoneValidatorAdapter } from '@shared/presentation/validation/validators';
+import { CellPhoneValidator } from '@shared/presentation/validation/validations/cell-phone-validator';
+import { ValidatorEmailValidatorAdapter } from '@shared/presentation/validation/validations/validator-email-validation-adapter';
+import { EmailValidatorAdapter } from '@shared/presentation/validation/validator/email-validator-adapter';
 
 @Injectable()
 export class CreateUserValidation {
-  constructor(
-    @Inject('EmailValidator') private emailValidation: EmailValidator,
-    private cellPhoneValidatorAdapter: CellPhoneValidatorAdapter,
-  ) {}
   makeCreateUserValidation = (): ValidationComposite => {
     const validations: Validation[] = [];
     for (const field of ['email', 'name', 'password', 'phone', 'cpf']) {
       validations.push(new RequiredFieldValidation(field));
     }
-    validations.push(new EmailValidation('email', this.emailValidation));
     validations.push(
-      new PhoneValidation('phone', this.cellPhoneValidatorAdapter),
+      new EmailValidatorAdapter('email', new ValidatorEmailValidatorAdapter()),
     );
+    validations.push(new PhoneValidation('phone', new CellPhoneValidator()));
     return new ValidationComposite(validations);
   };
 }

@@ -10,12 +10,14 @@ import { FindUserByIdService } from '@user/data';
 import { UserPostegresRepository } from '@user/infra';
 import { UserModule } from '@user/user.module';
 import { AddressTypeOrmRepository } from './infra/db/typeorm/repositories/address-repository';
+import { CreateAddressValidation } from './presentation/controller/create-address-validation';
 
 @Module({
   controllers: [AddressController],
   providers: [
     CreateAddressController,
     CreateAddressService,
+    CreateAddressValidation,
 
     {
       provide: 'CreateAddressUseCase',

@@ -1,9 +1,10 @@
 import { AddressDTO } from '@address/domain/dto/address-dto';
 import { CreateAddressUseCase } from '@address/domain/usecases/create-address';
 import { Inject, Injectable } from '@nestjs/common';
-import { HttpResponse } from '@shared/presentation';
+import { BadRequestError, HttpResponse } from '@shared/presentation';
 import { create } from '@shared/presentation/helpers/http-helper';
 import { Controller } from '@shared/presentation/protocols/controller';
+import { CreateAddressValidation } from './create-address-validation';
 
 @Injectable()
 export class CreateAddressController
@@ -11,10 +12,20 @@ export class CreateAddressController
 {
   constructor(
     @Inject('CreateAddressUseCase')
-    private createAddressUseCase: CreateAddressUseCase,
+    private createAddressService: CreateAddressUseCase,
+    private createAddressValidation: CreateAddressValidation,
   ) {}
   async handle(data?: AddressDTO): Promise<HttpResponse> {
-    const address = await this.createAddressUseCase.execute(data);
+    const validation =
+      this.createAddressValidation.makeCreateAddressValidation();
+
+    const error = validation.validate(data);
+
+    if (error) {
+      throw new BadRequestError(error.message);
+    }
+
+    const address = await this.createAddressService.execute(data);
     return create(address);
   }
 }

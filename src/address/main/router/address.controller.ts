@@ -13,7 +13,6 @@ export class AddressController {
     @Res() res: Response,
   ) {
     try {
-      // validar cep
       const response = await this.createAddressController.handle({
         ...data,
         userId,
