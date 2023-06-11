@@ -5,9 +5,9 @@ import {
   RequiredFieldValidation,
   ValidationComposite,
 } from '@shared/presentation/validation/validations';
-import { CellPhoneValidator } from '@shared/presentation/validation/validations/cell-phone-validator';
-import { ValidatorEmailValidatorAdapter } from '@shared/presentation/validation/validations/validator-email-validation-adapter';
-import { EmailValidatorAdapter } from '@shared/presentation/validation/validator/email-validator-adapter';
+import { EmailValidation } from '@shared/presentation/validation/validations/email-validation';
+import { RegexCellPhoneValidator } from '@shared/presentation/validation/validator/regex-cell-phone-validator';
+import { ValidatorEmailValidatorAdapter } from '@shared/presentation/validation/validator/validator-email-validator-adapter';
 
 @Injectable()
 export class CreateUserValidation {
@@ -17,9 +17,11 @@ export class CreateUserValidation {
       validations.push(new RequiredFieldValidation(field));
     }
     validations.push(
-      new EmailValidatorAdapter('email', new ValidatorEmailValidatorAdapter()),
+      new EmailValidation('email', new ValidatorEmailValidatorAdapter()),
     );
-    validations.push(new PhoneValidation('phone', new CellPhoneValidator()));
+    validations.push(
+      new PhoneValidation('phone', new RegexCellPhoneValidator()),
+    );
     return new ValidationComposite(validations);
   };
 }

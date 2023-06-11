@@ -5,7 +5,7 @@ import {
   ValidationComposite,
 } from '@shared/presentation';
 import { ZipCodeValidation } from '@shared/presentation/validation/validations/zip-code-validation';
-import { ZipCodeValidatorAdapter } from '@shared/presentation/validation/validator/zip-code-validation-adapter';
+import { RegexZipCodeValidator } from '@shared/presentation/validation/validator/regex-zip-code-validator';
 
 @Injectable()
 export class CreateAddressValidation {
@@ -24,9 +24,7 @@ export class CreateAddressValidation {
       validations.push(new RequiredFieldValidation(field));
     }
 
-    validations.push(
-      new ZipCodeValidatorAdapter('cep', new ZipCodeValidation()),
-    );
+    validations.push(new ZipCodeValidation('cep', new RegexZipCodeValidator()));
 
     return new ValidationComposite(validations);
   };

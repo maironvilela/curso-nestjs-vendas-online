@@ -1,7 +1,7 @@
 import { EmailValidator, Validation } from '@shared/presentation';
 import { InvalidParamError } from '@shared/presentation/errors';
 
-export class EmailValidatorAdapter implements Validation {
+export class EmailValidation implements Validation {
   constructor(
     private readonly fieldName: string,
     private readonly emailValidator: EmailValidator,

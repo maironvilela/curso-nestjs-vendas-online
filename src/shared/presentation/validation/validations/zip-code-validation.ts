@@ -1,8 +1,16 @@
-import { ZipCodeValidator } from '@shared/presentation';
+import { Validation, ZipCodeValidator } from '@shared/presentation';
+import { InvalidParamError } from '@shared/presentation/errors';
 
-export class ZipCodeValidation implements ZipCodeValidator {
-  isValid(zipCode: string): boolean {
-    const zipCodeRegex = /^\d{5}-\d{3}$/;
-    return zipCodeRegex.test(zipCode);
+export class ZipCodeValidation implements Validation {
+  constructor(
+    private readonly fieldName: string,
+    private readonly validator: ZipCodeValidator,
+  ) {}
+
+  validate(input: any): Error {
+    const isValid = this.validator.isValid(input[this.fieldName]);
+    if (!isValid) {
+      return new InvalidParamError(this.fieldName);
+    }
   }
 }

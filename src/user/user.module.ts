@@ -4,8 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { BcryptHasherAdapter } from '@shared/infra/cryptography/bcrypt-hasher-adapter';
 import { UuidV4GeneratorAdapter } from '@shared/infra/generator/uuidv4-generator-adapter';
 
-import { CellPhoneValidator } from '@shared/presentation/validation/validations/cell-phone-validator';
-import { LandLineValidation } from '@shared/presentation/validation/validations/landline-validation';
 import { CreateUserService, FindUserByIdService } from '@user/data';
 import { CreateUserValidation } from '@user/presentation/controllers/user-controller-validation';
 import { User, UserPostegresRepository } from './infra';
@@ -17,8 +15,6 @@ import { CreateUserController } from './presentation/controllers/create-user-con
   providers: [
     CreateUserService,
     CreateUserValidation,
-    CellPhoneValidator,
-    LandLineValidation,
     CreateUserController,
     BcryptHasherAdapter,
     FindUserByIdService,
