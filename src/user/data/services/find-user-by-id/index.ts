@@ -1,7 +1,8 @@
-import { Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { FindUserByIdRepository } from '@user/data';
 import { FindUserByIdUseCase } from '@user/domain';
 
+@Injectable()
 export class FindUserByIdService implements FindUserByIdUseCase {
   constructor(
     @Inject('FindUserByIdRepository')
@@ -12,4 +13,4 @@ export class FindUserByIdService implements FindUserByIdUseCase {
   }: FindUserByIdUseCase.Params): Promise<FindUserByIdUseCase.Result> {
     return await this.findUserByIdRepository.findUserById({ id });
   }
-} 
+}

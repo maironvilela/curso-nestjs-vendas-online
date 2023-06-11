@@ -3,7 +3,7 @@ import { CreateAddressUseCase } from '@address/domain/usecases/create-address';
 import { Inject, Injectable } from '@nestjs/common';
 import { UuidGenerator } from '@shared/data';
 import { BadRequestError } from '@shared/presentation';
-import { FindUserByIdService } from '@user/data';
+import { FindUserByIdUseCase } from '@user/domain';
 
 @Injectable()
 export class CreateAddressService implements CreateAddressUseCase {
@@ -12,7 +12,8 @@ export class CreateAddressService implements CreateAddressUseCase {
     private createAddressRepository: CreateAddressRepository,
     @Inject('UuidGenerator')
     private uuidGenerator: UuidGenerator,
-    private findUserByIdService: FindUserByIdService,
+    @Inject('FindUserByIdUseCase')
+    private findUserByIdService: FindUserByIdUseCase,
   ) {}
   async execute(
     data: CreateAddressUseCase.Params,
