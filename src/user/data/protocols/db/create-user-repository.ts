@@ -1,4 +1,4 @@
-import { CreateUser } from '@user/domain';
+import { CreateUserUseCase } from '@user/domain';
 
 export interface CreateUserRepository {
   create: (
@@ -15,5 +15,5 @@ export namespace CreateUserRepository {
     cpf: string;
     password: string;
   };
-  export type Result = CreateUser.Result;
+  export type Result = CreateUserUseCase.Result;
 }

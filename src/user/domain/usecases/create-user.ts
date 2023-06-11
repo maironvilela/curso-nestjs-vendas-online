@@ -1,10 +1,12 @@
 import { User } from '@user/domain';
 
-export interface CreateUser {
-  execute: (data: CreateUser.Params) => Promise<CreateUser.Result>;
+export interface CreateUserUseCase {
+  execute: (
+    data: CreateUserUseCase.Params,
+  ) => Promise<CreateUserUseCase.Result>;
 }
 
-export namespace CreateUser {
+export namespace CreateUserUseCase {
   export type Params = {
     name: string;
     email: string;
