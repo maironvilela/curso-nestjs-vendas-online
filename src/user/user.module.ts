@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { BcryptHasherAdapter } from '@shared/infra/cryptography/bcrypt-hasher-adapter';
 import { UuidV4GeneratorAdapter } from '@shared/infra/generator/uuidv4-generator-adapter';
 import {
   CellPhoneValidatorAdapter,
@@ -8,9 +9,8 @@ import {
   LandLineValidatorAdapter,
 } from '@shared/presentation/validation/validators';
 import { CreateUserService, FindUserByIdService } from '@user/data';
-import { HasherAdapter, User, UserPostegresRepository } from '@user/infra';
 import { CreateUserValidation } from '@user/presentation/controllers/user-controller-validation';
-import { BcryptHasherAdapterFactory } from './main/factories/adapters/bcrypt-hasher-adapter-factory';
+import { User, UserPostegresRepository } from './infra';
 import { UserController } from './main/router/user.controller';
 import { CreateUserController } from './presentation/controllers/create-user-controller';
 
@@ -22,7 +22,7 @@ import { CreateUserController } from './presentation/controllers/create-user-con
     CellPhoneValidatorAdapter,
     LandLineValidatorAdapter,
     CreateUserController,
-    HasherAdapter,
+    BcryptHasherAdapter,
     FindUserByIdService,
 
     {
@@ -44,12 +44,8 @@ import { CreateUserController } from './presentation/controllers/create-user-con
     },
 
     {
-      provide: 'HasherAdapterFactory',
-      useClass: BcryptHasherAdapterFactory,
-    },
-    {
       provide: 'Hasher',
-      useClass: HasherAdapter,
+      useClass: BcryptHasherAdapter,
     },
   ],
   imports: [TypeOrmModule.forFeature([User])],
