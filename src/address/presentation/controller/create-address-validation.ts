@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import {
+  RegexZipCodeValidator,
   RequiredFieldValidation,
   Validation,
   ValidationComposite,
+  ZipCodeValidation,
 } from '@shared/presentation';
-import { ZipCodeValidation } from '@shared/presentation/validation/validations/zip-code-validation';
-import { RegexZipCodeValidator } from '@shared/presentation/validation/validator/regex-zip-code-validator';
 
 @Injectable()
 export class CreateAddressValidation {
