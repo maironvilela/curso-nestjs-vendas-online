@@ -21,3 +21,14 @@ typeorm migration:create ./src/typeorm/migration/create_table_address
 ```
 
 ## Relation ManyToOne
+
+```
+ @OneToOne(() => Address, (address) => address.user)
+  address: Address;
+```
+
+```
+  @OneToOne(() => User, (user) => user.address)
+  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+  user?: User;
+```
