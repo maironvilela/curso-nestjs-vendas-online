@@ -20,7 +20,7 @@ nest g controller address
 typeorm migration:create ./src/typeorm/migration/create_table_address
 ```
 
-## Relation ManyToOne
+## Relacionamento OneToOne
 
 ```
  @OneToOne(() => Address, (address) => address.user)
@@ -31,4 +31,37 @@ typeorm migration:create ./src/typeorm/migration/create_table_address
   @OneToOne(() => User, (user) => user.address)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user?: User;
+```
+
+## Definir propriedades que será retornada
+```
+  const user = await this.repository.findOne({
+        where: {
+          id: id,
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          phone: true,
+          cpf: true,
+        },
+       });
+```
+
+## Definir relacionamento que será retornado
+```
+  const user = await this.repository.findOne({
+        where: {
+          id: id,
+        },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          phone: true,
+          cpf: true,
+        },
+        relations: ['address'],
+      });
 ```
