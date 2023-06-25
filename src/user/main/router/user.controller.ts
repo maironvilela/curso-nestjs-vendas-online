@@ -1,10 +1,22 @@
-import { Body, Controller, HttpStatus, Post, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  Param,
+  Post,
+  Res,
+} from '@nestjs/common';
 import { CreateUserController } from '@user/presentation';
+import { FindUserByIdController } from '@user/presentation/controllers/find-user-by-id-controller';
 import { Response } from 'express';
 
 @Controller('user')
 export class UserController {
-  constructor(private createUserController: CreateUserController) {}
+  constructor(
+    private createUserController: CreateUserController,
+    private findUserByIdController: FindUserByIdController,
+  ) {}
 
   @Post()
   async createUser(
@@ -19,5 +31,11 @@ export class UserController {
         .status(HttpStatus.BAD_REQUEST)
         .json({ message: error.message });
     }
+  }
+
+  @Get('/:id')
+  async findUserById(@Param('id') id: string, @Res() res: Response) {
+    const user = await this.findUserByIdController.handle({ id });
+    return res.json(user);
   }
 }

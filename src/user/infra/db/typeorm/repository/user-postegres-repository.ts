@@ -15,17 +15,23 @@ export class UserPostegresRepository
     @InjectRepository(User)
     private repository: Repository<User>,
   ) {}
+
   async findUserById({
     id,
   }: FindUserByIdUseCase.Params): Promise<FindUserByIdUseCase.Result> {
     try {
       const user = await this.repository.findOne({
-        select: {
-          id: true,
-        },
         where: {
           id: id,
         },
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          phone: true,
+          cpf: true,
+        },
+        relations: ['address'],
       });
 
       return user;

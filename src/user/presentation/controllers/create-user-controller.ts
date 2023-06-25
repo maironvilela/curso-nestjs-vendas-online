@@ -33,7 +33,6 @@ export class CreateUserController implements Controller {
       throw new BadRequestError(error.message);
     }
     const user = await this.createUserService.execute(data);
-    console.log(user);
 
     return create(new CreateUserResponse(user));
   }

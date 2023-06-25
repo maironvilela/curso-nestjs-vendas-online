@@ -14,8 +14,10 @@ https://dbdiagram.io/d/644304546b31947051004b36
 nest g controller address
 ```
 
-# Principais Comandos TypeORM
+# TypeORM
 ## Criar Migrations
 ```
 typeorm migration:create ./src/typeorm/migration/create_table_address
 ```
+
+## Relation ManyToOne

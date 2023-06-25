@@ -9,6 +9,7 @@ import { CreateUserValidation } from '@user/presentation/controllers/user-contro
 import { User, UserPostegresRepository } from './infra';
 import { UserController } from './main/router/user.controller';
 import { CreateUserController } from './presentation/controllers/create-user-controller';
+import { FindUserByIdController } from './presentation/controllers/find-user-by-id-controller';
 
 @Module({
   controllers: [UserController],
@@ -16,12 +17,18 @@ import { CreateUserController } from './presentation/controllers/create-user-con
     CreateUserService,
     CreateUserValidation,
     CreateUserController,
+    FindUserByIdController,
     BcryptHasherAdapter,
     FindUserByIdService,
 
     {
       provide: 'UuidGenerator',
       useClass: UuidV4GeneratorAdapter,
+    },
+
+    {
+      provide: 'FindUserByIdUseCase',
+      useClass: FindUserByIdService,
     },
 
     {

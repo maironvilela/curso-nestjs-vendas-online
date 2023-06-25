@@ -20,7 +20,7 @@ export class Address {
   cep: string;
 
   @Column()
-  logradouro: string;
+  logradouro: string; // alterar para street
 
   @Column()
   number: number;
@@ -43,7 +43,7 @@ export class Address {
 
   @OneToOne(() => User, (user) => user.address)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
-  user: User;
+  user?: User;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
