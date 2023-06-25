@@ -15,12 +15,16 @@ nest g controller address
 ```
 
 # TypeORM
-## Criar Migrations
+## Comandos
+### Criar Migrations
 ```
 typeorm migration:create ./src/typeorm/migration/create_table_address
 ```
 
-## Relacionamento OneToOne
+## Relacionamentos
+
+### Relacionamento OneToOne
+
 
 ```
  @OneToOne(() => Address, (address) => address.user)
@@ -33,7 +37,9 @@ typeorm migration:create ./src/typeorm/migration/create_table_address
   user?: User;
 ```
 
-## Definir propriedades que será retornada
+## Funções repository
+
+### FindOne :: Definir propriedades que será retornada
 ```
   const user = await this.repository.findOne({
         where: {
@@ -49,19 +55,25 @@ typeorm migration:create ./src/typeorm/migration/create_table_address
        });
 ```
 
-## Definir relacionamento que será retornado
+### FindOne (Definir relacionamento que será retornado)
 ```
-  const user = await this.repository.findOne({
-        where: {
-          id: id,
-        },
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          phone: true,
-          cpf: true,
-        },
-        relations: ['address'],
-      });
+const user = await this.repository.findOne({
+  where: {
+    id: id,
+  },
+  select: {
+    id: true,
+    name: true,
+    email: true,
+    phone: true,
+    cpf: true,
+  },
+  relations: ['address'],
+});
+```
+
+### Create
+```
+const user =  await this.repository.save(data);
+
 ```
