@@ -34,9 +34,11 @@ export class Address {
   @Column({ name: 'city_id', nullable: false })
   cityId: number;
 
-  @ManyToOne(() => City, (city) => city.address)
+  @ManyToOne(() => City, (city) => city.address, {
+    eager: true,
+  })
   @JoinColumn({ name: 'city_id', referencedColumnName: 'id' })
-  city?: City;
+  city: City;
 
   @Column({ name: 'user_id', nullable: false })
   userId: string;

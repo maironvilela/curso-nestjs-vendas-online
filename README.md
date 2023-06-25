@@ -25,10 +25,9 @@ typeorm migration:create ./src/typeorm/migration/create_table_address
 
 ### Relacionamento OneToOne
 
-
 ```
  @OneToOne(() => Address, (address) => address.user)
-  address: Address;
+  address: Address;  
 ```
 
 ```
@@ -36,6 +35,43 @@ typeorm migration:create ./src/typeorm/migration/create_table_address
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
   user?: User;
 ```
+
+
+
+### Relacionamento ManyToOne
+
+```
+@ManyToOne(() => City, (city) => city.address, {
+  eager: true,
+})
+@JoinColumn({ name: 'city_id', referencedColumnName: 'id' })
+city: City;
+```
+
+```
+@OneToMany(() => Address, (address) => address.city)
+address: Address[];
+```
+
+
+
+### Carregamento Eager
+As relações Eager são carregadas automaticamente cada vez que você carrega entidades do banco de dados
+
+```
+@ManyToOne(() => City, (city) => city.address, {
+    eager: true,
+})
+
+```
+
+### Carregamento Lazy (Default)
+Entidades em relações Lazy são carregadas assim que você as acessa. Essas relações devem ter Promise como tipo - você armazena seu valor em uma promessa e, quando as carrega, uma promessa também é retornada
+
+```
+@ManyToOne(() => City, (city) => city.address)
+```
+
 
 ## Funções repository
 

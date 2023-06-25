@@ -14,6 +14,7 @@ export class FindUserByIdResponse {
       complement: user.address.complement,
       neighborhood: user.address.neighborhood,
       logradouro: user.address.logradouro,
+      city: user.address.city.name,
     };
   }
 
@@ -29,5 +30,6 @@ export class FindUserByIdResponse {
     number: number;
     complement: string;
     neighborhood: string;
+    city: string;
   };
 }
