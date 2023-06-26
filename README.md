@@ -75,23 +75,7 @@ Entidades em relações Lazy são carregadas assim que você as acessa. Essas re
 
 ## Funções repository
 
-### FindOne :: Definir propriedades que será retornada
-```
-  const user = await this.repository.findOne({
-        where: {
-          id: id,
-        },
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          phone: true,
-          cpf: true,
-        },
-       });
-```
-
-### FindOne (Definir relacionamento que será retornado)
+### FindOne :: Definir propriedades que serão retornada
 ```
 const user = await this.repository.findOne({
   where: {
@@ -103,8 +87,30 @@ const user = await this.repository.findOne({
     email: true,
     phone: true,
     cpf: true,
+  }, 
+});
+```
+
+### FindOne (Definir relacionamento que será retornado)
+```
+const user = await this.repository.findOne({
+ where: {
+    id: id,
   },
-  relations: ['address'],
+  select: {
+    id: true,
+    name: true,
+    email: true,
+    phone: true,
+    cpf: true,
+  },
+  relations: {
+    address: {
+      city: {
+      state: true,
+      },
+    },
+  },
 });
 ```
 

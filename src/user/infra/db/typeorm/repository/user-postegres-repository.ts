@@ -31,7 +31,13 @@ export class UserPostegresRepository
           phone: true,
           cpf: true,
         },
-        relations: ['address'],
+        relations: {
+          address: {
+            city: {
+              state: true,
+            },
+          },
+        },
       });
 
       return user;

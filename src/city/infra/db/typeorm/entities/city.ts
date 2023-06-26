@@ -24,7 +24,7 @@ export class City {
 
   @ManyToOne(() => State, (state) => state.cities)
   @JoinColumn({ name: 'state_id', referencedColumnName: 'id' })
-  state?: State;
+  state: State;
 
   @OneToMany(() => Address, (address) => address.city)
   address: Address[];
