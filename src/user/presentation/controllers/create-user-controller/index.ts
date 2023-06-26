@@ -4,8 +4,7 @@ import { BadRequestError } from '@shared/presentation/errors/bad-request-error';
 import { Controller } from '@shared/presentation/protocols/controller';
 import { HttpResponse } from '@shared/presentation/protocols/http';
 import { CreateUserService } from '@user/data';
-import { CreateUserResponse } from '../dtos/create-user-response';
-import { CreateUserValidation } from './user-controller-validation';
+import { CreateUserResponse, CreateUserValidation } from '@user/presentation';
 
 export namespace CreateUserController {
   export type Request = {
