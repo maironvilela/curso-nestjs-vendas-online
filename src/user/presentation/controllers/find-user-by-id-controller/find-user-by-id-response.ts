@@ -9,11 +9,11 @@ export class FindUserByIdResponse {
     this.cpf = user.cpf;
     this.address = {
       id: user.address.id,
-      cep: user.address.cep,
+      zipCode: user.address.zipCode,
       number: user.address.number,
       complement: user.address.complement,
       neighborhood: user.address.neighborhood,
-      logradouro: user.address.logradouro,
+      street: user.address.street,
       city: user.address.city.name,
       state: user.address.city.state.name,
     };
@@ -26,8 +26,8 @@ export class FindUserByIdResponse {
   cpf: string;
   address: {
     id: string;
-    cep: string;
-    logradouro: string;
+    zipCode: string;
+    street: string;
     number: number;
     complement: string;
     neighborhood: string;

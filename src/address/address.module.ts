@@ -7,7 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UuidV4GeneratorAdapter } from '@shared/infra/generator/uuidv4-generator-adapter';
 import { SharedModule } from '@shared/shared.module';
 import { FindUserByIdService } from '@user/data';
-import { UserPostegresRepository } from '@user/infra';
+import { UserTypeOrmRepository } from '@user/infra/db/typeorm/repository/user-typeorm-repository';
 import { UserModule } from '@user/user.module';
 import { AddressTypeOrmRepository } from './infra/db/typeorm/repositories/address-repository';
 import { CreateAddressValidation } from './presentation/controller/create-address-validation';
@@ -33,7 +33,7 @@ import { CreateAddressValidation } from './presentation/controller/create-addres
     },
     {
       provide: 'FindUserByIdRepository',
-      useClass: UserPostegresRepository,
+      useClass: UserTypeOrmRepository,
     },
     {
       provide: 'UuidGenerator',

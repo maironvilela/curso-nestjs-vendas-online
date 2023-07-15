@@ -7,7 +7,6 @@ import { User } from '@user/infra';
 import { QueryFailedError, Repository } from 'typeorm';
 
 @Injectable()
-// alterar nome da classe para UserTypeormRepository
 export class UserTypeOrmRepository
   implements CreateUserRepository, FindUserByIdRepository
 {
@@ -39,8 +38,6 @@ export class UserTypeOrmRepository
           },
         },
       });
-
-      console.log({ user });
 
       return user;
     } catch (error) {

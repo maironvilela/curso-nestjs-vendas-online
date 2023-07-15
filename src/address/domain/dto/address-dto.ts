@@ -1,7 +1,7 @@
 export type AddressDTO = {
   id?: string;
-  cep: string;
-  logradouro: string;
+  zipCode: string;
+  street: string;
   number: number;
   complement: string;
   neighborhood: string;

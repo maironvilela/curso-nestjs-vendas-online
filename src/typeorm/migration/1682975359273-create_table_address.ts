@@ -17,11 +17,11 @@ export class CreateTableAddress1682975359273 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'cep',
+            name: 'zipCode',
             type: 'varchar',
           },
           {
-            name: 'logradouro',
+            name: 'street',
             type: 'varchar',
           },
           {

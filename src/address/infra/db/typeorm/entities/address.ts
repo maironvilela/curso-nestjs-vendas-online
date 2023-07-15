@@ -17,10 +17,10 @@ export class Address {
   id: string;
 
   @Column()
-  cep: string;
+  zipCode: string;
 
   @Column()
-  logradouro: string; // alterar para street
+  street: string;
 
   @Column()
   number: number;

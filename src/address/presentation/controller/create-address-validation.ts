@@ -12,8 +12,8 @@ export class CreateAddressValidation {
   makeCreateAddressValidation = (): ValidationComposite => {
     const validations: Validation[] = [];
     const fields = [
-      'cep',
-      'logradouro',
+      'zipCode',
+      'street',
       'number',
       'complement',
       'neighborhood',
@@ -24,7 +24,9 @@ export class CreateAddressValidation {
       validations.push(new RequiredFieldValidation(field));
     }
 
-    validations.push(new ZipCodeValidation('cep', new RegexZipCodeValidator()));
+    validations.push(
+      new ZipCodeValidation('zipCode', new RegexZipCodeValidator()),
+    );
 
     return new ValidationComposite(validations);
   };

@@ -19,7 +19,6 @@ export class CreateAddressService implements CreateAddressUseCase {
     data: CreateAddressUseCase.Params,
   ): Promise<CreateAddressUseCase.Result> {
     const user = await this.findUserByIdService.execute({ id: data.userId });
-    console.log(!!user);
     if (!user) {
       throw new BadRequestError('User not found');
     }

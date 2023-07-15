@@ -2,8 +2,8 @@ import { City } from '@city/domain/model/city';
 
 export type Address = {
   id: string;
-  cep: string; // zipCode
-  logradouro: string;
+  zipCode: string;
+  street: string;
   number: number;
   complement: string;
   neighborhood: string;
