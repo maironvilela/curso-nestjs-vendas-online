@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Controller, HttpResponse, ok } from '@shared/presentation';
 import { FindUserByIdUseCase } from '@user/domain';
-import { FindUserByIdResponse } from './find-user-by-id-response';
+import { FindUserByIdResponse } from '@user/presentation/controllers';
 
 export namespace FindUserByIdController {
   export type Request = {

@@ -5,10 +5,10 @@ import { BcryptHasherAdapter } from '@shared/infra/cryptography/bcrypt-hasher-ad
 import { UuidV4GeneratorAdapter } from '@shared/infra/generator/uuidv4-generator-adapter';
 
 import { CreateUserService, FindUserByIdService } from '@user/data';
-import { CreateUserValidation } from '@user/presentation/controllers/user-controller-validation';
 import { User, UserPostegresRepository } from './infra';
 import { UserController } from './main/router/user.controller';
 import { CreateUserController } from './presentation/controllers/create-user-controller';
+import { CreateUserValidation } from './presentation/controllers/create-user-controller/create-user-controller-validation';
 import { FindUserByIdController } from './presentation/controllers/find-user-by-id-controller';
 
 @Module({

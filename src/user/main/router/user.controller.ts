@@ -7,7 +7,7 @@ import {
   Post,
   Res,
 } from '@nestjs/common';
-import { CreateUserController } from '@user/presentation';
+import { CreateUserController } from '@user/presentation/controllers/create-user-controller';
 import { FindUserByIdController } from '@user/presentation/controllers/find-user-by-id-controller';
 import { Response } from 'express';
 

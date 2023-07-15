@@ -15,13 +15,18 @@ nest g controller address
 ```
 
 # TypeORM
-## Comandos
+## Migrations
+
+As migrations no TypeORM são uma parte importante da abordagem de desenvolvimento, pois permitem que você gerencie as mudanças no esquema do banco de dados de forma mais sistemática e controlada. Com o uso de migrations, é possível versionar e rastrear as alterações no esquema ao longo do tempo, facilitando a colaboração em projetos com várias pessoas e garantindo que todos os ambientes tenham a mesma estrutura de banco de dados.
 ### Criar Migrations
 ```
+
 typeorm migration:create ./src/typeorm/migration/create_table_address
 ```
 
 ## Relacionamentos
+
+O TypeORM oferece suporte a vários tipos de relacionamentos entre entidades (tabelas) em bancos de dados relacionais. Esses relacionamentos são definidos usando anotações ou decorators no TypeScript. 
 
 ### Relacionamento OneToOne
 

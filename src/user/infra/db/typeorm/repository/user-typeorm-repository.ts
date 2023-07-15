@@ -8,7 +8,7 @@ import { QueryFailedError, Repository } from 'typeorm';
 
 @Injectable()
 // alterar nome da classe para UserTypeormRepository
-export class UserPostegresRepository
+export class UserTypeOrmRepository
   implements CreateUserRepository, FindUserByIdRepository
 {
   constructor(
@@ -39,6 +39,8 @@ export class UserPostegresRepository
           },
         },
       });
+
+      console.log({ user });
 
       return user;
     } catch (error) {
