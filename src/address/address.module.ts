@@ -2,6 +2,9 @@ import { CreateAddressService } from '@address/data/services/create-address';
 import { Address } from '@address/infra/db/typeorm/entities/address';
 import { AddressController } from '@address/main/router/address.controller';
 import { CreateAddressController } from '@address/presentation/controller/create-address-controller';
+import { CityModule } from '@city/city.module';
+import { FindCityByIdService } from '@city/data/services/find-city-by-id';
+import { CityTypeOrmRepository } from '@city/infra/db/typeorm/repositories/city-repository';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UuidV4GeneratorAdapter } from '@shared/infra/generator/uuidv4-generator-adapter';
@@ -24,22 +27,36 @@ import { CreateAddressValidation } from './presentation/controller/create-addres
       useClass: CreateAddressService,
     },
     {
-      provide: 'FindUserByIdUseCase',
-      useClass: FindUserByIdService,
-    },
-    {
       provide: 'CreateAddressRepository',
       useClass: AddressTypeOrmRepository,
+    },
+    {
+      provide: 'FindUserByIdUseCase',
+      useClass: FindUserByIdService,
     },
     {
       provide: 'FindUserByIdRepository',
       useClass: UserTypeOrmRepository,
     },
     {
+      provide: 'FindCityByIdUseCase',
+      useClass: FindCityByIdService,
+    },
+    {
+      provide: 'FindCityByIdRepository',
+      useClass: CityTypeOrmRepository,
+    },
+
+    {
       provide: 'UuidGenerator',
       useClass: UuidV4GeneratorAdapter,
     },
   ],
-  imports: [TypeOrmModule.forFeature([Address]), SharedModule, UserModule],
+  imports: [
+    TypeOrmModule.forFeature([Address]),
+    SharedModule,
+    UserModule,
+    CityModule,
+  ],
 })
 export class AddressModule {}

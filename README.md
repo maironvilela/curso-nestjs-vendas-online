@@ -14,6 +14,54 @@ https://dbdiagram.io/d/644304546b31947051004b36
 nest g controller address
 ```
 
+## Exportar service para outro modulo
+> Define como provider o service e o repositorio que deseja utilizar em outro módulo.
+
+> Exporte o service e o modulo do typeOrm
+```
+@Module({
+  controllers: [CityController],
+  imports: [CacheModule, TypeOrmModule.forFeature([City])],
+  providers: [
+    FindCityByIdService,   
+   
+    {
+      provide: 'FindCityByIdRepository',
+      useClass: CityTypeOrmRepository,
+    },
+    ... 
+  ],
+  exports: [FindCityByIdService, TypeOrmModule],
+})
+export class CityModule {}
+```
+
+> No modulo que deseja utilizar os recursos exportados, importe o modulo e definie o service e o repositorio no array de providers
+
+```
+@Module({
+   imports: [
+    ...
+    CityModule,
+  ],
+  controllers: [...],
+  providers: [    
+    {
+      provide: 'FindCityByIdUseCase',
+      useClass: FindCityByIdService,
+    },
+    {
+      provide: 'FindCityByIdRepository',
+      useClass: CityTypeOrmRepository,
+    },
+    ...   
+  ],
+ 
+})
+export class AddressModule {}
+
+```
+
 # TypeORM
 ## Migrations
 
